@@ -29,6 +29,9 @@ public class Topic {
     public String getName() {
         return name;
     }
+    public void addPost (Post post) {
+        posts.add(post);
+    }
 
     public Collection<Post> getPosts() {
         return posts;
