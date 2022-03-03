@@ -30,6 +30,16 @@
                        class="posts__nav-link"></a>
                 </div>
             </nav>
+            <form th:action="'/posts/' + ${topic.id} + '/addnewpost'"
+                  method="POST">
+                        <textarea name="title" id="submitPostTitleArea" cols="20" rows="1"
+                                  placeholder="Title"></textarea>
+                <textarea name="author" id="submitPostNameArea" cols="20" rows="1"
+                          placeholder="Your name"></textarea>
+                <textarea name="content" id="submitPostTextArea" cols="20" rows="1"
+                          placeholder="Content"></textarea>
+                <input type="submit" name="SEND" id="submitPostInput">
+            </form>
         </section>
     </main>
 </div>

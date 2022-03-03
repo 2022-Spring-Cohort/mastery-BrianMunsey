@@ -1,25 +1,32 @@
 package com.survivingcodingbootcamp.blog.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 public class Post {
+
     @Id
     @GeneratedValue
     private Long id;
     private String title;
+    private String author;
     @ManyToOne
     private Topic topic;
     @Lob
     private String content;
 
-    protected Post() {
+    @ManyToMany(mappedBy = "posts")
+    Collection<Hashtag> hashtags;
+
+    private Post() {
     }
 
-    public Post(String title, Topic topic, String content) {
+    public Post(String title, Topic topic, String content, String author) {
         this.title = title;
         this.topic = topic;
         this.content = content;
+        this.author = author;
     }
 
     public Long getId() {
@@ -30,12 +37,20 @@ public class Post {
         return title;
     }
 
+    public String getAuthor() {
+        return author;
+    }
+
     public Topic getTopic() {
         return topic;
     }
 
     public String getContent() {
         return content;
+    }
+
+    public Collection<Hashtag> getHashtags() {
+        return hashtags;
     }
 
     @Override
@@ -69,4 +84,8 @@ public class Post {
         result = 31 * result + (content != null ? content.hashCode() : 0);
         return result;
     }
+
+
+
+
 }
